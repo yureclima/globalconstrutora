@@ -1,0 +1,59 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "High-quality construction site overview",
+      "imageUrl": "https://picsum.photos/seed/global1/1920/1080",
+      "imageHint": "construction building"
+    },
+    {
+      "id": "service-construction",
+      "description": "New building construction",
+      "imageUrl": "https://picsum.photos/seed/global2/600/400",
+      "imageHint": "house construction"
+    },
+    {
+      "id": "service-renovation",
+      "description": "Interior renovation project",
+      "imageUrl": "https://picsum.photos/seed/global3/600/400",
+      "imageHint": "interior renovation"
+    },
+    {
+      "id": "service-leisure",
+      "description": "Luxury pool and gourmet area",
+      "imageUrl": "https://picsum.photos/seed/global4/600/400",
+      "imageHint": "luxury pool"
+    },
+    {
+      "id": "service-structure",
+      "description": "Structural engineering work",
+      "imageUrl": "https://picsum.photos/seed/global5/600/400",
+      "imageHint": "concrete structure"
+    },
+    {
+      "id": "project-1",
+      "description": "Completed residential project",
+      "imageUrl": "https://picsum.photos/seed/global6/800/600",
+      "imageHint": "modern house"
+    },
+    {
+      "id": "project-2",
+      "description": "Completed pool area",
+      "imageUrl": "https://picsum.photos/seed/global7/800/600",
+      "imageHint": "swimming pool"
+    },
+    {
+      "id": "project-3",
+      "description": "Renovated living room",
+      "imageUrl": "https://picsum.photos/seed/global8/800/600",
+      "imageHint": "living room"
+    },
+    {
+      "id": "project-4",
+      "description": "Modern facade",
+      "imageUrl": "https://picsum.photos/seed/global9/800/600",
+      "imageHint": "building facade"
+    }
+  ]
+}
