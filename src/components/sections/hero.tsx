@@ -9,51 +9,53 @@ export function Hero() {
   const whatsappUrl = `https://wa.me/5562994156485?text=${encodeURIComponent("Olá, vim pelo site da Global Construtora e gostaria de solicitar um orçamento.")}`;
 
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-      {/* Background Image with Overlay */}
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]">
+      {/* Background Image with Architectural Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
           src={heroImg?.imageUrl || ""}
-          alt="Construção Civil"
+          alt="Construção e Reforma em Goiânia"
           fill
-          className="object-cover"
+          className="object-cover scale-110 opacity-40 grayscale group-hover:grayscale-0 transition-all duration-[3000ms]"
           priority
-          data-ai-hint="construction building"
         />
-        <div className="absolute inset-0 bg-zinc-900/70 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent" />
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/brushed-alum.png')] opacity-10" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10 py-20">
-        <div className="max-w-3xl space-y-8 animate-in fade-in slide-in-from-left-8 duration-700">
-          <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary/30 rounded-full px-4 py-1 text-primary text-sm font-bold uppercase tracking-wider">
+      <div className="container mx-auto px-4 relative z-10 pt-20">
+        <div className="max-w-5xl space-y-12 animate-in fade-in slide-in-from-bottom-12 duration-1000">
+          <div className="inline-flex items-center gap-4 bg-white/5 border border-white/10 backdrop-blur-2xl rounded-none px-4 sm:px-6 py-2 text-primary text-[9px] sm:text-[10px] font-black uppercase tracking-[0.4em] orange-glow">
             <HardHat className="h-4 w-4" />
-            Excelência em Goiânia e Região
+            Qualidade & Confiança em Cada Etapa
           </div>
           
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight">
-            Construção, reforma e áreas de lazer em <span className="text-primary">Goiânia</span>
-          </h1>
-          
-          <p className="text-lg md:text-xl text-zinc-300 max-w-xl leading-relaxed">
-            A Global Construtora transforma projetos em realidade com equipe própria, preço justo e compromisso com a qualidade em cada etapa da obra.
-          </p>
+          <div className="space-y-6">
+            <h1 className="text-[2.5rem] leading-[0.9] sm:text-6xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase premium-gradient-text">
+              Construção, <br /> <span className="italic font-light text-primary">Reforma</span> e Lazer
+            </h1>
+            <p className="text-[9px] sm:text-[10px] font-black text-zinc-500 uppercase tracking-[0.4em] sm:tracking-[0.5em] ml-2">Goiânia e Região Metropolitana</p>
+            
+            <p className="text-lg sm:text-xl md:text-2xl text-zinc-400 max-w-2xl leading-relaxed font-light border-l border-primary/40 pl-6 sm:pl-8 ml-2">
+              A Global Construtora transforma projetos em realidade com equipe própria, preço justo e compromisso com a qualidade em cada etapa da obra.
+            </p>
+          </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full h-14 px-8 text-lg font-bold shadow-xl shadow-primary/20" asChild>
+          <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 pt-8 items-center">
+            <Button size="lg" className="w-full sm:w-auto orange-glow group h-16 px-8 sm:px-10 rounded-none text-[9px] sm:text-[10px] font-black tracking-[0.2em]" asChild>
               <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="mr-2 h-6 w-6" />
-                Solicitar orçamento
+                <MessageCircle className="mr-3 h-5 w-5 transition-transform group-hover:rotate-12" />
+                SOLICITAR ORÇAMENTO PELO WHATSAPP
               </a>
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 rounded-full h-14 px-8 text-lg font-bold" asChild>
-              <a href="#obras">Ver obras realizadas</a>
-            </Button>
+            <div className="flex items-center gap-4 text-zinc-600">
+              <div className="hidden sm:block w-12 h-[1px] bg-zinc-800" />
+              <a href="#obras" className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.3em] hover:text-primary transition-colors py-2">Ver Obras Realizadas</a>
+            </div>
           </div>
         </div>
       </div>
       
-      {/* Geometric Decorative Elements */}
-      <div className="absolute bottom-0 right-0 w-1/3 h-full bg-primary/10 clip-path-polygon hidden lg:block" style={{ clipPath: 'polygon(100% 0, 0% 100%, 100% 100%)' }} />
     </section>
   );
 }

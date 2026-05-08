@@ -10,13 +10,16 @@ export function WhatsAppButton() {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-10 right-10 z-50 flex flex-col items-end gap-3 group">
+      <div className="bg-zinc-950/80 backdrop-blur-md border border-white/10 px-4 py-2 text-[8px] font-black uppercase tracking-[0.3em] text-primary opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500 orange-glow rounded-full">
+        Solicite um Orçamento
+      </div>
       <Button
         size="lg"
-        className="rounded-full w-16 h-16 shadow-2xl bg-green-500 hover:bg-green-600 border-4 border-white dark:border-zinc-900 transition-transform hover:scale-110"
+        className="rounded-full w-16 h-16 shadow-2xl orange-glow transition-all duration-500 hover:scale-110 active:scale-95 p-0"
         asChild
       >
-        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
           <MessageCircle className="!w-8 !h-8 text-white" />
         </a>
       </Button>

@@ -1,3 +1,16 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "imageUrl": "/images/hero.png"
+    },
+    {
+      "id": "project-1",
+      "imageUrl": "/images/construction-site.png"
+    },
+    {
+      "id": "project-2",
+      "imageUrl": "/images/luxury-interior.png"
+    }
+  ]
 }

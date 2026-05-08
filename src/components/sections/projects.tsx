@@ -1,53 +1,81 @@
 
 import Image from "next/image";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { Button } from "@/components/ui/button";
+
+const projects = [
+  {
+    title: "Área de Lazer",
+    category: "Lazer & Piscina",
+    image: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    title: "Reforma",
+    category: "Residencial",
+    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    title: "Construção",
+    category: "Estrutural",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    title: "Acabamento",
+    category: "Interiores",
+    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=800",
+  },
+];
 
 export function Projects() {
-  const projects = [
-    { title: "Área de Lazer", category: "Gourmet & Piscina", id: "project-2" },
-    { title: "Reforma Residencial", category: "Interior", id: "project-3" },
-    { title: "Construção Comercial", category: "Estrutura", id: "project-4" },
-    { title: "Acabamento Premium", category: "Detalhes", id: "project-1" },
-  ];
-
   return (
-    <section id="obras" className="py-24 bg-white overflow-hidden">
+    <section id="obras" className="py-20 md:py-32 bg-[#0a0a0a]">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
-          <div className="space-y-4">
-            <h2 className="text-3xl md:text-4xl font-black">Obras Realizadas</h2>
-            <p className="text-zinc-600 max-w-lg">Confira alguns dos nossos projetos entregues com máxima qualidade em Goiânia e região.</p>
-          </div>
-          <div className="hidden md:block text-right">
-            <p className="text-xs font-bold text-primary uppercase tracking-widest mb-1">Galeria de Portfólio</p>
-            <p className="text-zinc-400 text-sm">Transformando sonhos em estruturas sólidas</p>
+        <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-24">
+          <div className="space-y-6">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter premium-gradient-text leading-none">
+              Nossas <br /> <span className="text-primary italic font-light">Obras</span>
+            </h2>
+            <p className="text-zinc-400 text-lg sm:text-xl font-light max-w-xl border-l border-primary/30 pl-6 sm:pl-8">
+              Confira alguns dos projetos entregues pela Global Construtora em Goiânia e região. Qualidade em cada detalhe.
+            </p>
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {projects.map((project, idx) => {
-            const imgData = PlaceHolderImages.find(img => img.id === project.id);
-            return (
-              <div key={idx} className="group relative aspect-[4/5] rounded-3xl overflow-hidden shadow-lg">
-                <Image
-                  src={imgData?.imageUrl || ""}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  data-ai-hint="construction project"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/90 via-zinc-900/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute bottom-0 left-0 p-8 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  <p className="text-primary font-bold text-xs uppercase tracking-widest mb-2">{project.category}</p>
-                  <h3 className="text-white text-xl font-black">{project.title}</h3>
+        <div className="grid md:grid-cols-2 gap-1 border border-white/5">
+          {projects.map((project, index) => (
+            <div 
+              key={index} 
+              className="group relative h-[400px] md:h-[550px] overflow-hidden bg-zinc-900 border border-white/5"
+            >
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover brightness-110 contrast-110 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-90 transition-opacity group-hover:opacity-70" />
+              
+              {/* Border Effect */}
+              <div className="absolute inset-0 border-0 group-hover:border-[12px] border-primary/20 transition-all duration-500 pointer-events-none" />
+
+              <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <div className="space-y-3">
+                  <div className="h-[1px] w-12 bg-primary group-hover:w-full transition-all duration-700" />
+                  <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">
+                    {project.category}
+                  </p>
+                  <h3 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter leading-none">
+                    {project.title}
+                  </h3>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
-        
+
         <div className="mt-16 text-center">
-          <p className="text-sm text-zinc-400 italic">"Cada obra é tratada com seriedade e compromisso com o resultado final."</p>
+          <Button size="lg" className="h-16 px-12 rounded-none tracking-[0.3em] text-[10px] font-black orange-glow" asChild>
+            <a href="#contato">SOLICITAR ORÇAMENTO DA MINHA OBRA</a>
+          </Button>
         </div>
       </div>
     </section>

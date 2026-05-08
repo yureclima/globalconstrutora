@@ -2,6 +2,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { MessageCircle, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -27,62 +28,68 @@ export function Navbar() {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
   return (
-    <nav className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-md">
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="bg-primary p-2 rounded-lg">
-            <span className="text-primary-foreground font-black text-xl italic leading-none">GLOBAL</span>
+    <nav className="sticky top-0 z-50 w-full border-b border-white/5 bg-zinc-950/80 backdrop-blur-2xl overflow-x-hidden">
+      <div className="container mx-auto px-4 h-24 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-3 sm:gap-4 group">
+          <div className="bg-primary p-1 sm:p-2 rounded-none transition-transform group-hover:skew-x-2 orange-glow flex items-center justify-center">
+            <Image 
+              src="/images/logo-global.svg" 
+              alt="Global Construtora" 
+              width={140} 
+              height={56} 
+              className="h-10 sm:h-12 w-auto brightness-0 invert scale-110"
+            />
           </div>
-          <span className="font-bold text-lg hidden sm:inline-block">Construtora</span>
+          <div className="flex flex-col">
+            <span className="font-black text-base sm:text-lg text-white uppercase tracking-[0.2em] leading-none">Construtora</span>
+            <span className="text-[8px] sm:text-[9px] text-zinc-500 font-black uppercase tracking-[0.4em] mt-1">Goiânia e Região</span>
+          </div>
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-12">
           {navItems.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-medium hover:text-primary transition-colors"
+              className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 hover:text-primary transition-colors relative group/item"
             >
               {item.name}
+              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all group-hover/item:w-full" />
             </Link>
           ))}
-          <Button className="bg-primary hover:bg-primary/90 rounded-full px-6" asChild>
+          <Button className="rounded-none h-12 px-10 orange-glow text-[10px] font-black tracking-[0.2em]" asChild>
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-              <MessageCircle className="mr-2 h-4 w-4" />
-              WhatsApp
+              SOLICITAR ORÇAMENTO
             </a>
           </Button>
         </div>
 
         {/* Mobile Menu */}
         <div className="md:hidden flex items-center gap-4">
-          <Button variant="ghost" size="icon" asChild>
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-              <MessageCircle className="h-5 w-5 text-green-600" />
-            </a>
-          </Button>
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
+              <Button variant="ghost" size="icon" className="text-white hover:bg-white/5 rounded-none h-12 w-12">
+                <Menu className="h-8 w-8" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] flex flex-col pt-12">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-lg font-semibold py-4 border-b hover:text-primary transition-colors"
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="mt-8 flex flex-col gap-4">
-                <Button className="w-full bg-primary py-6 text-lg" asChild>
+            <SheetContent side="right" className="w-[300px] bg-zinc-950 border-zinc-900 flex flex-col pt-20">
+              <div className="flex flex-col gap-2">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className="text-3xl font-black uppercase tracking-tighter py-6 border-b border-white/5 text-white hover:text-primary transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+              <div className="mt-auto pb-12">
+                <Button className="w-full rounded-none h-16 text-[10px] font-black tracking-[0.2em] orange-glow" asChild>
                   <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                    Solicitar Orçamento
+                    SOLICITAR ORÇAMENTO
                   </a>
                 </Button>
               </div>

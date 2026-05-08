@@ -1,114 +1,141 @@
 
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MessageCircle, Phone, Mail, MapPin, Instagram } from "lucide-react";
-import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { Phone, Mail, MapPin, CheckCircle2, MessageCircle } from "lucide-react";
 
 export function ContactForm() {
-  const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1500));
       toast({
-        title: "Solicitação enviada!",
-        description: "Entraremos em contato via WhatsApp em breve.",
+        title: "Solicitação Enviada",
+        description: "Nossa equipe entrará em contato em breve.",
       });
       (e.target as HTMLFormElement).reset();
-    }, 1500);
+    } catch (error) {
+      toast({
+        title: "Erro ao enviar",
+        description: "Houve um problema ao enviar sua solicitação.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
+
+  const steps = [
+    { num: "01", title: "Chamada no WhatsApp", desc: "Você entra em contato conosco para uma primeira conversa." },
+    { num: "02", title: "Entendemos sua Necessidade", desc: "Analisamos o que você precisa para construção ou reforma." },
+    { num: "03", title: "Avaliação Técnica", desc: "Fazemos uma visita ou avaliação técnica detalhada." },
+    { num: "04", title: "Envio de Orçamento", desc: "Apresentamos uma proposta clara e com preço justo." },
+    { num: "05", title: "Execução da Obra", desc: "Iniciamos os trabalhos com equipe própria e qualidade." },
+  ];
 
   const whatsappUrl = `https://wa.me/5562994156485?text=${encodeURIComponent("Olá, vim pelo site da Global Construtora e gostaria de solicitar um orçamento.")}`;
 
   return (
-    <section id="contato" className="py-24 bg-zinc-900 text-white relative overflow-hidden">
-      {/* Decorative Glow */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2" />
-      
+    <section id="contato" className="py-20 md:py-32 bg-[#0a0a0a] relative overflow-hidden border-t border-zinc-900">
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-20 items-start">
-          <div className="space-y-12">
-            <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl font-black">Quer tirar sua obra do papel?</h2>
-              <p className="text-zinc-400 text-lg">Fale com a Global Construtora e solicite um orçamento para construção, reforma ou área de lazer em Goiânia e região.</p>
-            </div>
-
+        <div className="grid lg:grid-cols-2 gap-24 items-start">
+          <div className="space-y-16">
             <div className="space-y-8">
-              <div className="flex items-center gap-6">
-                <div className="w-14 h-14 rounded-2xl bg-zinc-800 flex items-center justify-center text-primary shrink-0">
-                  <Phone className="h-6 w-6" />
-                </div>
-                <div>
-                  <p className="text-zinc-500 text-sm">WhatsApp</p>
-                  <p className="text-xl font-bold">(62) 99415-6485</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-6">
-                <div className="w-14 h-14 rounded-2xl bg-zinc-800 flex items-center justify-center text-primary shrink-0">
-                  <Mail className="h-6 w-6" />
-                </div>
-                <div>
-                  <p className="text-zinc-500 text-sm">E-mail</p>
-                  <p className="text-xl font-bold">globalservicewf@gmail.com</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-6">
-                <div className="w-14 h-14 rounded-2xl bg-zinc-800 flex items-center justify-center text-primary shrink-0">
-                  <MapPin className="h-6 w-6" />
-                </div>
-                <div>
-                  <p className="text-zinc-500 text-sm">Área de Atendimento</p>
-                  <p className="text-xl font-bold">Goiânia e Região Metropolitana</p>
-                </div>
+              <div className="h-[1px] w-24 bg-primary" />
+              <h2 className="text-4xl sm:text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.85] premium-gradient-text">
+                Quer tirar sua <br /><span className="text-primary italic font-light">Obra do Papel?</span>
+              </h2>
+              <p className="text-zinc-400 text-lg sm:text-xl md:text-2xl font-light leading-relaxed max-w-lg border-l border-primary/30 pl-6 sm:pl-8">
+                Fale com a Global Construtora e solicite um orçamento para construção, reforma ou área de lazer em Goiânia e região.
+              </p>
+              <div className="pt-4">
+                <Button size="lg" className="h-16 px-10 orange-glow rounded-none group" asChild>
+                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                    <MessageCircle className="mr-3 h-5 w-5 transition-transform group-hover:scale-110" />
+                    CHAMAR NO WHATSAPP
+                  </a>
+                </Button>
               </div>
             </div>
 
-            <Button size="lg" className="w-full sm:w-auto bg-primary hover:bg-primary/90 h-16 px-12 rounded-full text-lg font-black shadow-2xl shadow-primary/20" asChild>
-              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="mr-3 h-6 w-6" />
-                CHAMAR NO WHATSAPP
-              </a>
-            </Button>
+              <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500">Como Funciona</h3>
+              <div className="space-y-8">
+                {steps.map((step, i) => (
+                  <div key={i} className="flex gap-4 sm:gap-6 items-start group">
+                    <span className="text-xl sm:text-2xl font-black text-primary group-hover:scale-110 transition-transform">{step.num}</span>
+                    <div className="space-y-1">
+                      <p className="text-white font-bold uppercase tracking-wider text-xs sm:text-base">{step.title}</p>
+                      <p className="text-zinc-400 text-[11px] sm:text-sm font-light leading-relaxed">{step.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
           </div>
 
-          <div className="bg-white p-8 md:p-12 rounded-3xl text-zinc-900 shadow-2xl border border-zinc-200">
-            <h3 className="text-2xl font-black mb-8">Formulário de Orçamento</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-zinc-500">Nome Completo</label>
-                  <Input required className="bg-zinc-50 border-zinc-200 h-12 rounded-xl" placeholder="Ex: João da Silva" />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-zinc-500">WhatsApp</label>
-                  <Input required className="bg-zinc-50 border-zinc-200 h-12 rounded-xl" placeholder="(62) 99999-9999" />
-                </div>
+          <div className="glass-panel p-6 sm:p-12 md:p-16 relative">
+            <div className="absolute top-0 left-0 w-2 h-full bg-primary" />
+            <div className="mb-12">
+              <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Solicitar Orçamento</h3>
+              <p className="text-zinc-500 text-sm mt-2">Preencha o formulário e retornaremos em até 2 horas úteis.</p>
+            </div>
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="space-y-2">
+                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 ml-1">Seu Nome</label>
+                <Input 
+                  placeholder="Seu nome completo" 
+                  required 
+                  className="h-14 bg-white/[0.02] border-zinc-800 rounded-none focus:border-primary transition-all text-white placeholder:text-zinc-700"
+                />
               </div>
-              <div className="grid sm:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-zinc-500">Cidade</label>
-                  <Input required className="bg-zinc-50 border-zinc-200 h-12 rounded-xl" placeholder="Sua cidade" />
+                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 ml-1">WhatsApp</label>
+                  <Input 
+                    placeholder="(62) 99999-9999" 
+                    required 
+                    className="h-14 bg-white/[0.02] border-zinc-800 rounded-none focus:border-primary transition-all text-white placeholder:text-zinc-700"
+                  />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-zinc-500">Tipo de Serviço</label>
-                  <Input required className="bg-zinc-50 border-zinc-200 h-12 rounded-xl" placeholder="Ex: Reforma de piscina" />
+                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 ml-1">Cidade</label>
+                  <Input 
+                    placeholder="Ex: Goiânia" 
+                    required 
+                    className="h-14 bg-white/[0.02] border-zinc-800 rounded-none focus:border-primary transition-all text-white placeholder:text-zinc-700"
+                  />
                 </div>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-bold text-zinc-500">Sua Mensagem</label>
-                <Textarea required className="bg-zinc-50 border-zinc-200 min-h-[120px] rounded-xl" placeholder="Descreva brevemente o que você precisa..." />
+                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 ml-1">Tipo de Serviço</label>
+                <Input 
+                  placeholder="Ex: Reforma / Construção / Lazer" 
+                  required 
+                  className="h-14 bg-white/[0.02] border-zinc-800 rounded-none focus:border-primary transition-all text-white placeholder:text-zinc-700"
+                />
               </div>
-              <Button type="submit" className="w-full bg-zinc-900 hover:bg-zinc-800 text-white h-14 rounded-xl font-bold" disabled={loading}>
-                {loading ? "Enviando..." : "SOLICITAR ORÇAMENTO"}
+              <div className="space-y-2">
+                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 ml-1">Mensagem</label>
+                <Textarea 
+                  placeholder="Conte-nos brevemente sobre seu projeto..." 
+                  className="min-h-[120px] bg-white/[0.02] border-zinc-800 rounded-none focus:border-primary transition-all text-white placeholder:text-zinc-700"
+                  required 
+                />
+              </div>
+              <Button 
+                type="submit" 
+                className="w-full h-16 text-xs font-black tracking-[0.3em] orange-glow" 
+                disabled={loading}
+              >
+                {loading ? "ENVIANDO..." : "ENVIAR SOLICITAÇÃO"}
               </Button>
             </form>
           </div>
