@@ -2,9 +2,9 @@ import type {NextConfig} from 'next';
 import path from 'path';
 
 const nextConfig: NextConfig = {
-  output: 'standalone',
-  outputFileTracingRoot: path.join(__dirname),
+  output: 'export',
   images: {
+    unoptimized: true,
     minimumCacheTTL: 60,
     remotePatterns: [
       {
