@@ -31,7 +31,7 @@ export function Hero() {
           </div>
           
           <div className="space-y-6">
-            <h1 className="text-[2.5rem] leading-[0.9] sm:text-6xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase premium-gradient-text">
+            <h1 className="text-[2.5rem] leading-[1.1] sm:leading-none sm:text-6xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase premium-gradient-text py-2">
               Construção, <br /> <span className="italic font-light text-primary">Reforma</span> e Lazer
             </h1>
             <p className="text-[9px] sm:text-[10px] font-black text-zinc-500 uppercase tracking-[0.4em] sm:tracking-[0.5em] ml-2">Goiânia e Região Metropolitana</p>

@@ -63,7 +63,7 @@
     background-size: 48px 48px;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-headline font-black tracking-tighter uppercase leading-[0.9] text-white;
+    @apply font-headline font-black tracking-tighter uppercase leading-none text-white;
   }
 }
 
